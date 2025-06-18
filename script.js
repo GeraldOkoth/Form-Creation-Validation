@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("registration-form");
   const feedbackDiv = document.getElementById("form-feedback");
 
@@ -9,35 +9,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    let isValid = true; // Changed to 'let'
-    const messages = [];
+    let isValid = true;
+    let messages = [];
 
-    // Username validation
     if (username.length < 3) {
       isValid = false;
-      messages.push("Username must be more than 3 characters!");
+      messages.push("Username must be at least 3 characters.");
     }
 
-    // Email validation
-    if (!email.includes("@") || !email.includes(".")) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
       isValid = false;
-      messages.push("Invalid email. Email must contain '@' and '.' symbols!");
+      messages.push("Please enter a valid email.");
     }
 
-    // Password validation
     if (password.length < 8) {
       isValid = false;
-      messages.push("Password must be more than 8 characters!");
+      messages.push("Password must be at least 8 characters.");
     }
 
-    // Feedback
     if (isValid) {
-      feedbackDiv.textContent = "Registration Successful!";
+      feedbackDiv.textContent = "Registration successful!";
       feedbackDiv.style.color = "#28a745";
-      feedbackDiv.style.display = "block";
       form.reset();
     } else {
-      feedbackDiv.innerHTML = messages.join("<br />");
+      feedbackDiv.innerHTML = messages.join("<br>");
       feedbackDiv.style.color = "#dc3545";
     }
   });
