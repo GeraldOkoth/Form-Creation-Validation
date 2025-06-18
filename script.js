@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (isValid) {
+      feedbackDiv.style.display = "block";
       feedbackDiv.textContent = "Registration successful!";
       feedbackDiv.style.color = "#28a745";
       form.reset();
